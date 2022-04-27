@@ -5,10 +5,12 @@
 // Creo cinque numeri casuali da 1 a 100 e li stampo in pagina.
 let gameNumbers = [];
 
-for (let i = 0; i < 5; i++) {
+while (gameNumbers.length <= 5) {
     const randomNumber = getRndInteger(1, 100);
-    gameNumbers.push(randomNumber);
-}
+    if (!gameNumbers.includes(randomNumber)) {
+        gameNumbers.push(randomNumber);
+    }
+};
 
 const numbersContainer = document.getElementById("numbers");
 
