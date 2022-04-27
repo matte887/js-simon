@@ -36,7 +36,8 @@ setTimeout(function(){
         result += `${correctContainer[i]} `;        
     }
 
-    console.log(result);
+    const resultOnPage = document.getElementById("result");
+    resultOnPage.innerHTML = result;
     
 }, 3010);
 
