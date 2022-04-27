@@ -28,9 +28,35 @@ setTimeout(function(){
     
     console.log(userAnswer);
 
+    const correctContainer = compareArray(gameNumbers, userAnswer);
+    console.log(correctContainer);
+
+    let result = `Hai indovinato ${correctContainer.lenght} numeri su 5. Le risposte corrette sono state: `;
+    for (let i = 0; i < correctContainer.length; i++) {
+        result += `${correctContainer[i]} `;        
+    }
+
+    console.log(result);
+    
 }, 3010);
 
 // FUNCTIONS
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+/**
+ * Descrizione: la funzione confronta i dati contenuti in un array userArray con quelli contenuti in correctArray.
+ * @param {any} correctArray -> sono i dati che userArray dovrebbe contenere.
+ * @param {any} userArray -> sono i dati da confrontare con correctArray.
+ * @returns {array} -> la funzione restituisce un array contenente i valori che matchano. 
+ */
+function compareArray (correctArray, userArray) {
+    let correctAnswers = [];
+    for (let i = 0; i < correctArray.length; i++) {
+        if (userArray.includes(correctArray[i])) {
+            correctAnswers.push(correctArray[i]);
+        }    
+    }
+    return correctAnswers
 }
