@@ -19,32 +19,34 @@ numbersContainer.innerHTML = `Memorizza questi numeri: ${gameNumbers[0]}, ${game
 // Imposto una funzione di timeout. Allo scadere del tempo aggiungo una classe che fa sparire i numeri.
 setTimeout(function(){
     numbersContainer.classList.add("hide");
+
+    setTimeout(function(){
+        // Chiedo all'utente i numeri e li stampo in un array.
+        let userAnswer = [];
+        for (let i = 0; i < gameNumbers.length; i++) {
+            userAnswer.push(parseInt(prompt(`Inserisci un numero che ricordi e premi "Invio".`)));
+        }
+        
+        console.log("Risposta utente: ", userAnswer);
+    
+        // Richiamo la funzione che confronta gli array.
+        const correctContainer = compareArray(gameNumbers, userAnswer);
+        console.log(correctContainer);
+    
+        // Scrivo il risultato.
+        let result = `Hai indovinato ${correctContainer.length} numeri su 5. Le risposte corrette sono state: `;
+        for (let i = 0; i < correctContainer.length; i++) {
+            result += `${correctContainer[i]} `;        
+        };
+        
+        // Stampo il risultato in pagina.
+        const resultOnPage = document.getElementById("result");
+        resultOnPage.innerHTML = result;
+        
+    }, 100);
 }, 3000);
 
-setTimeout(function(){
-    // Chiedo all'utente i numeri e li stampo in un array.
-    let userAnswer = [];
-    for (let i = 0; i < gameNumbers.length; i++) {
-        userAnswer.push(parseInt(prompt(`Inserisci un numero che ricordi e premi "Invio".`)));
-    }
-    
-    console.log("Risposta utente: ", userAnswer);
 
-    // Richiamo la funzione che confronta gli array.
-    const correctContainer = compareArray(gameNumbers, userAnswer);
-    console.log(correctContainer);
-
-    // Scrivo il risultato.
-    let result = `Hai indovinato ${correctContainer.length} numeri su 5. Le risposte corrette sono state: `;
-    for (let i = 0; i < correctContainer.length; i++) {
-        result += `${correctContainer[i]} `;        
-    };
-    
-    // Stampo il risultato in pagina.
-    const resultOnPage = document.getElementById("result");
-    resultOnPage.innerHTML = result;
-    
-}, 3100);
 
 // FUNCTIONS
 function getRndInteger(min, max) {
